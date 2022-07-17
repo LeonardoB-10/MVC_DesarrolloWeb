@@ -1,0 +1,61 @@
+﻿@model MVCCrud.Models.ViewModels.ClienteViewModel
+@{
+    ViewBag.Title = "Datos del Cliente ";
+}
+
+<h2>Nuevo</h2>
+
+@using (Html.BeginForm("Nuevo", "Cliente", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.nombre_cli)
+                <br />
+                @Html.TextBoxFor(d => d.nombre_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.nombre_cli, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.cedula_cli)
+                <br />
+                @Html.TextBoxFor(d => d.cedula_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.cedula_cli, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.correo_cli)
+                <br />
+                @Html.TextBoxFor(d => d.correo_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.correo_cli, null, new { @class = "red" })
+
+            </div>
+
+            <div>
+                <div class="input-group date" id="datepicker">
+                    @Html.LabelFor(d => d.fechaNacimiento)
+                    <br />
+                    @Html.EditorFor(d => d.fechaNacimiento, "", new { htmlAtributes = new { @class = "datepicker", @readonly = "true" } })
+                    @Html.ValidationMessageFor(d => d.fechaNacimiento, null, new { @class = "red" })
+                </div>
+
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.foto, htmlAttributes: new {@class = "control-label col-md-12"})
+                <br /><br />
+               <input type="file" name="imageload"/><br />
+                @Html.ValidationMessageFor(d => d.foto, "", new { @class = "text-danger" })
+
+            </div>
+            <br />
+            <br />
+            <br />
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+    </div>
+
+}

@@ -1,0 +1,63 @@
+﻿@model MVCCrud.Models.ViewModels.ClienteViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Editar", "Cliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.id_cliente)
+            <div>
+                @Html.LabelFor(d => d.nombre_cli)
+                <br />
+                @Html.TextBoxFor(d => d.nombre_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.nombre_cli, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.cedula_cli)
+                <br />
+                @Html.TextBoxFor(d => d.cedula_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.cedula_cli, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.correo_cli)
+                <br />
+                @Html.TextBoxFor(d => d.correo_cli, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.correo_cli, null, new { @class = "red" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.fechaNacimiento)
+                <br />
+                @Html.EditorFor(d => d.fechaNacimiento, "", new { @class = "form_control" })
+                @Html.ValidationMessageFor(d => d.fechaNacimiento, null, new { @class = "red" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.foto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <img width="250" src="@Url.Action("getImage", "Cliente", new { id = Model.id_cliente })" height="300" />
+                <input type="file" name="imageload" />
+                @Html.ValidationMessageFor(d => d.foto, "", new { @class = "text-danger" })
+
+            </div>
+            
+            <br />
+            <br />
+            <br />
+            <div>
+                <input value="Enviar" class="btn btn-primary" type="submit" />
+            </div>
+        </div>
+    </div>
+
+}
+

@@ -1,0 +1,54 @@
+﻿@model List<MVCCrud.Models.ViewModels.ListClienteViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>@ViewBag.Title</h2>
+
+
+<!--CREACION DE LA TABLA-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="row" style="text-align: right; padding: 10px;">
+            <a href="~/Cliente/Nuevo" class="btn btn-primary">Agregar</a>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Correo</th>
+                <th>Foto</th>
+                <th>Acciones</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.id_cliente</td>
+                    <td>@oElemento.nombre_cli</td>
+                    <td>@oElemento.cedula_cli</td>
+                    <td>@oElemento.correo_cli</td>
+                    <td>
+                        <img width="100" src="@Url.Action("getImage", "Cliente", new {id = @oElemento.id_cliente})"/>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="@Url.Action("Editar", "Cliente", new {id = @oElemento.id_cliente})">Editar</a>
+                        <a class="btn btn-danger" href="@Url.Action("Eliminar", "Cliente", new {id = @oElemento.id_cliente})" onclick="alerta()">Eliminar</a>
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function alerta() {
+        var mensaje = confirm("Quiere eliminar?")
+        if (mensaje == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
